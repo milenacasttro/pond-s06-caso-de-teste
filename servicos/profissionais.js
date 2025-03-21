@@ -28,10 +28,11 @@ function modificaProfissional(modificacoes, id) {
 }
 
 function removeProfissionalPorId(id) {
-    const profissionais = JSON.parse(fs.readFileSync("profissionais.json"))
-    const novaListaRemovido = profissionais.filter(profissional => profissional.id !== id)
-    fs.writeFileSync("profissionais.json", JSON.stringify(novaListaRemovido))
-
+    const profissionais = JSON.parse(fs.readFileSync("profissionais.json"));
+    const novaListaRemovido = profissionais.filter(profissional => profissional.id !== id);
+    
+    console.log(`Removendo profissional com ID: ${id}`);
+    fs.writeFileSync("profissionais.json", JSON.stringify(novaListaRemovido));
 }
 
 module.exports = {

@@ -67,16 +67,18 @@ function deleteProfissional(req, res) {
     try {
         const id = req.params.id
         if (id && Number(id)) {
-            removeProfissionalPorId(id)
-            res.send("Profissional removido com sucesso")
+            const profissional = getProfissionalPorId(id);
+            if (profissional) {
+                removeProfissionalPorId(id);
+                res.status(200).send("Profissional removido com sucesso");
+            } else {
+                res.status(404).send("Profissional não encontrado");
+            }
         } else {
-            res.status(422)
-            res.send("ID inválido")
+            res.status(422).send("ID inválido");
         }
     } catch (error) {
-        res.status(500)
-        res.send(error.message)
-        
+        res.status(500).send(error.message);
     }
 }
 
